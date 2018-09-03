@@ -7,7 +7,7 @@
 [![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/sixlive/json-schema-assertions.svg?style=flat-square)](https://scrutinizer-ci.com/g/sixlive/json-schema-assertions/)
 [![StyleCI](https://github.styleci.io/repos/147207965/shield)](https://github.styleci.io/repos/147207965)
 
-JSON Schema schema assertions for Laravel test responses. Uses [swaggest/php-json-schema](https://github.com/swaggest/php-json-schema) under the hood.
+JSON Schema schema assertions for PHP. Uses [swaggest/php-json-schema](https://github.com/swaggest/php-json-schema) under the hood.
 
 ## Installation
 

@@ -9,10 +9,16 @@ class AssertsJsonTraitTest extends TestCase
 {
     use AssertsJsonSchema;
 
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->setJsonSchemaBasePath(__DIR__.'/Support/Schemas');
+    }
+
     /** @test */
     public function trait_can_be_used_to_assert_json()
     {
-        $this->setJsonSchemaBasePath(__DIR__.'/Support/Schemas');
         $this->assertJsonSchema('foo', '{ "foo": "bar" }');
     }
 }

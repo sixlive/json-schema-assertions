@@ -9,6 +9,10 @@
 
 JSON Schema schema assertions for PHP. Uses [swaggest/php-json-schema](https://github.com/swaggest/php-json-schema) under the hood.
 
+## Framework Integrations
+
+* [Laravel](https://github.com/sixlive/laravel-json-schema-assertions)
+
 ## Installation
 
 You can install the package via composer:

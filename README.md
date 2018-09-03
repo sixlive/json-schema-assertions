@@ -52,7 +52,7 @@ public function it_has_a_valid_response()
     $schemaAssertion->schema(json_encode($schema))->assert('{"foo": "bar"}');
 
     // Schema from a file
-    $schemaAssertion->schema(base_path('schemas/foo.json'))
+    $schemaAssertion->schema(__DIR__.'/../schemas/foo.json'))
         ->assert('{"foo": "bar"}');
 
     // Schema from config path

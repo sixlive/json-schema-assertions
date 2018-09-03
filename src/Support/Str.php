@@ -5,10 +5,7 @@ namespace sixlive\JsonSchemaAssertions\Support;
 class Str
 {
     /**
-     * Test to see if a string is json.
-     *
      * @param  string  $string
-     *
      * @return bool
      */
     public static function isJson($string)

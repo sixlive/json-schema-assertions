@@ -11,15 +11,6 @@ $rules = [
     'ordered_imports' => [
         'sortAlgorithm' => 'length',
     ],
-    'phpdoc_add_missing_param_annotation' => true,
-    'phpdoc_indent' => true,
-    'phpdoc_no_package' => true,
-    'phpdoc_order' => true,
-    'phpdoc_separation' => true,
-    'phpdoc_single_line_var_spacing' => true,
-    'phpdoc_trim' => true,
-    'phpdoc_var_without_name' => true,
-    'phpdoc_to_comment' => true,
     'single_quote' => true,
     'ternary_operator_spaces' => true,
     'trailing_comma_in_multiline_array' => true,
@@ -28,9 +19,6 @@ $rules = [
 
 $excludes = [
     'vendor',
-    'storage',
-    'node_modules',
-    'bootstrap/cache',
 ];
 
 return PhpCsFixer\Config::create()
@@ -42,5 +30,4 @@ return PhpCsFixer\Config::create()
             ->notName('README.md')
             ->notName('*.xml')
             ->notName('*.yml')
-            ->notName('_ide_helper.php')
     );

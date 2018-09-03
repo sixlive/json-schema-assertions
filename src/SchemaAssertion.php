@@ -9,8 +9,14 @@ use sixlive\JsonSchemaAssertions\Support\Str;
 
 class SchemaAssertion
 {
+    /**
+     * @var \Swaggest\JsonSchema\JsonSchema
+     */
     protected $schema;
 
+    /**
+     * @var string
+     */
     protected $baseSchemaPath = '';
 
     /**
@@ -21,6 +27,10 @@ class SchemaAssertion
         $this->baseSchemaPath = $baseSchemaPath;
     }
 
+    /**
+     * @param . mixed . $schema
+     * @return void
+     */
     public function schema($schema)
     {
         if (is_array($schema)) {
@@ -41,11 +51,10 @@ class SchemaAssertion
     }
 
     /**
-     * Assert JSON against the loaded schema.
-     *
      * @param  string  $data
-     *
      * @return void
+     *
+     * @throws \PHPUnit\Framework\AssertionFailedError
      */
     public function assert(string $data)
     {
@@ -59,10 +68,7 @@ class SchemaAssertion
     }
 
     /**
-     * Test if the schema is a JSON string.
-     *
      * @param  mixed  $schema
-     *
      * @return bool
      */
     private function isJson($schema)
@@ -71,10 +77,7 @@ class SchemaAssertion
     }
 
     /**
-     * Test if the schema is being loaded from the config path.
-     *
      * @param  mixed  $schema
-     *
      * @return bool
      */
     private function isFileFromConfigPath($schema)
@@ -84,10 +87,7 @@ class SchemaAssertion
     }
 
     /**
-     * Merge the provided path with the config path and file extension.
-     *
      * @param  string  $schema
-     *
      * @return string
      */
     private function mergeConfigPath($schema)

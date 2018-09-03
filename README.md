@@ -31,6 +31,30 @@ If you are making use of external schema refrences e.g. `$ref: 'bar.json`, you m
 │   └── foo.json
 ```
 
+You can either use the `AssertsJsonSchema` trait or manually construct the schema assertion.
+
+```php
+use sixlive\JsonSchemaAssertions\Concerns\AssertJsonSchema;
+
+class ExampleTest extends TestCase
+{
+    use AssertsJsonSchema;
+
+    public function setUp()
+    {
+        parent::setUp();
+
+        $this->setJsonSchemaBasePath(__DIR__.'/../Schemas');
+    }
+
+    /** @test */
+    function it_has_a_valid_response()
+    {
+        $schemaAssertion->schema('foo')->assert('{"foo": "bar"}');
+    }
+}
+```
+
 ```php
 /** @test */
 public function it_has_a_valid_response()
@@ -47,25 +71,23 @@ public function it_has_a_valid_response()
         ],
     ];
 
-    $schemaAssertion = new SchemaAssertion();
-
     // Schema as an array
-    $schemaAssertion->schema($schema)->assert('{"foo": "bar"}');
+    (new SchemaAssertion())->schema($schema)->assert('{"foo": "bar"}');
 
     // Schema from raw JSON
-    $schemaAssertion->schema(json_encode($schema))->assert('{"foo": "bar"}');
+    (new SchemaAssertion())->schema(json_encode($schema))->assert('{"foo": "bar"}');
 
     // Schema from a file
-    $schemaAssertion->schema(__DIR__.'/../schemas/foo.json'))
+    (new SchemaAssertion())->schema(__DIR__.'/../schemas/foo.json'))
         ->assert('{"foo": "bar"}');
+
+    // Remote schema
+    (new SchemaAssertion())->schema('https://docs.foo.io/schemas/foo.json')
+        ->assert('{"foo": "bar"}')
 
     // Schema from config path
     (new SchemaAssertion(__DIR__.'/../schemas/'))
         ->schema('foo')
-        ->assert('{"foo": "bar"}');
-
-    // Remote schema
-    $schemaAssertion->schema('https://docs.foo.io/schemas/foo.json')
         ->assert('{"foo": "bar"}');
 }
 ```

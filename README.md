@@ -23,7 +23,7 @@ You can install the package via composer:
 
 ## Usage
 
-If you are making use of external schema refrences e.g. `$ref: 'bar.json`, you mush reference the schema through file path or using the config path resolution.
+If you are making use of external schema refrences e.g. `$ref: 'bar.json`, you must reference the schema through file path or using the config path resolution.
 
 ```
 ├── schemas

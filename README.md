@@ -56,7 +56,7 @@ public function it_has_a_valid_response()
         ->assert('{"foo": "bar"}');
 
     // Schema from config path
-    (new SchemaAssertion(__DIR__.'../schemas/'))
+    (new SchemaAssertion(__DIR__.'/../schemas/'))
         ->schema('foo')
         ->assert('{"foo": "bar"}');
 

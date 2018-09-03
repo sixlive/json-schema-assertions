@@ -11,10 +11,17 @@ class SchemaAssertion
 {
     protected $schema;
 
+    protected $baseSchemaPath = '';
+
     /**
-     * @param  array|string  $schema
+     * @param . string . $baseSchemaPath
      */
-    public function __construct($schema)
+    public function __construct($baseSchemaPath = '')
+    {
+        $this->baseSchemaPath = $baseSchemaPath;
+    }
+
+    public function schema($schema)
     {
         if (is_array($schema)) {
             $schema = json_encode($schema);
@@ -29,6 +36,8 @@ class SchemaAssertion
         }
 
         $this->schema = Schema::import($schema);
+
+        return $this;
     }
 
     /**
@@ -84,7 +93,7 @@ class SchemaAssertion
     private function mergeConfigPath($schema)
     {
         return vsprintf('%s/%s.json', [
-            config('json-schema-assertions.schema_base_path'),
+            $this->baseSchemaPath,
             $schema,
         ]);
     }

@@ -1,11 +1,11 @@
-# Laravel JSON Schema Assertions
+# JSON Schema Assertions
 
-[![Packagist Version](https://img.shields.io/packagist/v/sixlive/laravel-json-schema-assertions.svg?style=flat-square)](https://packagist.org/packages/sixlive/laravel-json-schema-assertions)
-[![Packagist Downloads](https://img.shields.io/packagist/dt/sixlive/laravel-json-schema-assertions.svg?style=flat-square)](https://packagist.org/packages/sixlive/laravel-json-schema-assertions)
-[![Travis](https://img.shields.io/travis/sixlive/laravel-json-schema-assertions.svg?style=flat-square)](https://travis-ci.org/sixlive/laravel-json-schema-assertions)
-[![Code Quality](https://img.shields.io/scrutinizer/g/sixlive/laravel-json-schema-assertions.svg?style=flat-square)](https://scrutinizer-ci.com/g/sixlive/laravel-json-schema-assertions/)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/sixlive/laravel-json-schema-assertions.svg?style=flat-square)](https://scrutinizer-ci.com/g/sixlive/laravel-json-schema-assertions/)
-[![StyleCI](https://github.styleci.io/repos/139347110/shield)](https://github.styleci.io/repos/139347110)
+[![Packagist Version](https://img.shields.io/packagist/v/sixlive/json-schema-assertions.svg?style=flat-square)](https://packagist.org/packages/sixlive/json-schema-assertions)
+[![Packagist Downloads](https://img.shields.io/packagist/dt/sixlive/json-schema-assertions.svg?style=flat-square)](https://packagist.org/packages/sixlive/json-schema-assertions)
+[![Travis](https://img.shields.io/travis/sixlive/json-schema-assertions.svg?style=flat-square)](https://travis-ci.org/sixlive/json-schema-assertions)
+[![Code Quality](https://img.shields.io/scrutinizer/g/sixlive/json-schema-assertions.svg?style=flat-square)](https://scrutinizer-ci.com/g/sixlive/json-schema-assertions/)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/sixlive/json-schema-assertions.svg?style=flat-square)](https://scrutinizer-ci.com/g/sixlive/json-schema-assertions/)
+[![StyleCI](https://github.styleci.io/repos/147207965/shield)](https://github.styleci.io/repos/147207965)
 
 JSON Schema schema assertions for Laravel test responses. Uses [swaggest/php-json-schema](https://github.com/swaggest/php-json-schema) under the hood.
 
@@ -14,35 +14,7 @@ JSON Schema schema assertions for Laravel test responses. Uses [swaggest/php-jso
 You can install the package via composer:
 
 ```bash
-> composer require sixlive/laravel-json-schema-assertions
-```
-
-This package uses Laravel's [package discovery](https://laravel.com/docs/5.6/packages#package-discovery) to register the service provider to the framework. If you are using an older version of Laravel or do not use package discovery see below.
-
-<details>
-    <summary>Provider registration</summary>
-
-```php
-// config/app.php
-
-'providers' => [
-    sixlive\Laravel\JsonSchemaAssertions\ServiceProvider::class,
-]
-```
-
-</details>
-
-### Configuration
-Publish the packages config file:
-```bash
-> php artisan vendor:publish --provider="sixlive\Laravel\JsonSchemaAssertions\ServiceProvider" --tag="config"
-```
-
-This is the contents of the file which will be published at `config/json-schema-assertions`:
-```php
-return [
-    'schema_base_path' => base_path('schemas'),
-];
+> composer require sixlive/json-schema-assertions
 ```
 
 ## Usage
@@ -50,19 +22,9 @@ return [
 If you are making use of external schema refrences e.g. `$ref: 'bar.json`, you mush reference the schema through file path or using the config path resolution.
 
 ```
-├── app
-├── bootstrap
-├── config
-├── database
-├── public
-├── resources
-├── routes
 ├── schemas
 │   ├── bar.json
 │   └── foo.json
-├── storage
-├── tests
-└── vendor
 ```
 
 ```php
@@ -81,22 +43,26 @@ public function it_has_a_valid_response()
         ],
     ];
 
-    $response = $this->get('/foo');
+    $schemaAssertion = new SchemaAssertion();
 
     // Schema as an array
-    $response->assertJsonSchema($schema);
+    $schemaAssertion->schema($schema)->assert('{"foo": "bar"}');
 
     // Schema from raw JSON
-    $response->assertJsonSchema(json_encode($schema));
+    $schemaAssertion->schema(json_encode($schema))->assert('{"foo": "bar"}');
 
     // Schema from a file
-    $response->assertJsonSchema(base_path('schemas/foo.json'));
+    $schemaAssertion->schema(base_path('schemas/foo.json'))
+        ->assert('{"foo": "bar"}');
 
     // Schema from config path
-    $response->assertJsonSchema('foo');
+    (new SchemaAssertion(__DIR__.'../schemas/'))
+        ->schema('foo')
+        ->assert('{"foo": "bar"}');
 
     // Remote schema
-    $response->assertJsonSchema('https://docs.foo.io/schemas/foo.json');
+    $schemaAssertion->schema('https://docs.foo.io/schemas/foo.json')
+        ->assert('{"foo": "bar"}');
 }
 ```
 

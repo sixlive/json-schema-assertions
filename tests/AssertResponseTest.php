@@ -3,8 +3,8 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\AssertionFailedError;
+use sixlive\JsonSchemaAssertions\SchemaAssertion;
 
 class AssertResponseTest extends TestCase
 {
@@ -15,7 +15,7 @@ class AssertResponseTest extends TestCase
         parent::setUp();
 
         $this->response = json_encode([
-            'foo' => 'bar'
+            'foo' => 'bar',
         ]);
     }
 
@@ -34,7 +34,9 @@ class AssertResponseTest extends TestCase
              ],
        ];
 
-        $this->get('foo')->assertJsonSchema(json_encode($schema));
+        (new SchemaAssertion())
+            ->schema(json_encode($schema))
+            ->assert($this->response);
     }
 
     /** @test */
@@ -52,14 +54,15 @@ class AssertResponseTest extends TestCase
              ],
        ];
 
-        $this->get('foo')->assertJsonSchema($schema);
+        (new SchemaAssertion())->schema($schema)->assert($this->response);
     }
 
     /** @test */
     public function valid_schema_passes_as_file_path()
     {
-        $this->get('foo')
-             ->assertJsonSchema(__DIR__.'/Support/Schemas/foo.json');
+        (new SchemaAssertion())
+            ->schema(__DIR__.'/Support/Schemas/foo.json')
+            ->assert($this->response);
     }
 
     /** @test */
@@ -79,12 +82,16 @@ class AssertResponseTest extends TestCase
              ],
        ];
 
-        $this->get('foo')->assertJsonSchema(json_encode($schema));
+        (new SchemaAssertion())
+            ->schema(json_encode($schema))
+            ->assert($this->response);
     }
 
     /** @test */
     public function valid_schema_passes_as_config_path()
     {
-        $this->get('foo')->assertJsonSchema('foo');
+        (new SchemaAssertion(__DIR__.'/Support/Schemas'))
+            ->schema('foo')
+            ->assert($this->response);
     }
 }

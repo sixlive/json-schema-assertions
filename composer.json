@@ -37,7 +37,6 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit",
-        "test-coverage": "vendor/bin/phpunit --coverage-html coverage",
         "styles:lint": "vendor/bin/php-cs-fixer fix --dry-run --diff",
         "styles:fix": "vendor/bin/php-cs-fixer fix"
     },

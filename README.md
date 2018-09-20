@@ -18,7 +18,7 @@ JSON Schema schema assertions for PHP. Uses [swaggest/php-json-schema](https://g
 You can install the package via composer:
 
 ```bash
-> composer require sixlive/json-schema-assertions
+> composer require --dev sixlive/json-schema-assertions
 ```
 
 ## Usage
@@ -50,7 +50,9 @@ class ExampleTest extends TestCase
     /** @test */
     function it_has_a_valid_response()
     {
-        $schemaAssertion->schema('foo')->assert('{"foo": "bar"}');
+        $this->schemaAssertion
+            ->schema('foo')
+            ->assert('{"foo": "bar"}');
     }
 }
 ```
@@ -72,20 +74,20 @@ public function it_has_a_valid_response()
     ];
 
     // Schema as an array
-    (new SchemaAssertion())->schema($schema)->assert('{"foo": "bar"}');
+    (new SchemaAssertion)->schema($schema)->assert('{"foo": "bar"}');
 
     // Schema from raw JSON
-    (new SchemaAssertion())->schema(json_encode($schema))->assert('{"foo": "bar"}');
+    (new SchemaAssertion)->schema(json_encode($schema))->assert('{"foo": "bar"}');
 
     // Schema from a file
-    (new SchemaAssertion())->schema(__DIR__.'/../schemas/foo.json'))
+    (new SchemaAssertion)->schema(__DIR__.'/../schemas/foo.json'))
         ->assert('{"foo": "bar"}');
 
     // Remote schema
-    (new SchemaAssertion())->schema('https://docs.foo.io/schemas/foo.json')
+    (new SchemaAssertion)->schema('https://docs.foo.io/schemas/foo.json')
         ->assert('{"foo": "bar"}')
 
-    // Schema from config path
+    // Schema from a path
     (new SchemaAssertion(__DIR__.'/../schemas/'))
         ->schema('foo')
         ->assert('{"foo": "bar"}');

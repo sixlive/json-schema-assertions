@@ -8,7 +8,7 @@ class Str
      * @param  string  $string
      * @return bool
      */
-    public static function isJson($string)
+    public static function isJson(string $string) : bool
     {
         json_decode($string);
 

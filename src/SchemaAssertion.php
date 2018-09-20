@@ -29,7 +29,7 @@ class SchemaAssertion
 
     /**
      * @param . mixed . $schema
-     * @return void
+     * @return self
      */
     public function schema($schema)
     {

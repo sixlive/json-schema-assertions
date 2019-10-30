@@ -9,7 +9,7 @@ class AssertsJsonTraitTest extends TestCase
 {
     use AssertsJsonSchema;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

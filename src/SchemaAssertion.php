@@ -2,10 +2,10 @@
 
 namespace sixlive\JsonSchemaAssertions;
 
-use Swaggest\JsonSchema\Schema;
-use Swaggest\JsonSchema\InvalidValue;
 use PHPUnit\Framework\Assert as PHPUnit;
 use sixlive\JsonSchemaAssertions\Support\Str;
+use Swaggest\JsonSchema\InvalidValue;
+use Swaggest\JsonSchema\Schema;
 
 class SchemaAssertion
 {

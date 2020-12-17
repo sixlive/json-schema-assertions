@@ -2,9 +2,6 @@
 
 [![Packagist Version](https://img.shields.io/packagist/v/sixlive/json-schema-assertions.svg?style=flat-square)](https://packagist.org/packages/sixlive/json-schema-assertions)
 [![Packagist Downloads](https://img.shields.io/packagist/dt/sixlive/json-schema-assertions.svg?style=flat-square)](https://packagist.org/packages/sixlive/json-schema-assertions)
-[![Travis](https://img.shields.io/travis/sixlive/json-schema-assertions.svg?style=flat-square)](https://travis-ci.org/sixlive/json-schema-assertions)
-[![Code Quality](https://img.shields.io/scrutinizer/g/sixlive/json-schema-assertions.svg?style=flat-square)](https://scrutinizer-ci.com/g/sixlive/json-schema-assertions/)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/sixlive/json-schema-assertions.svg?style=flat-square)](https://scrutinizer-ci.com/g/sixlive/json-schema-assertions/)
 [![StyleCI](https://github.styleci.io/repos/147207965/shield)](https://github.styleci.io/repos/147207965)
 
 JSON Schema schema assertions for PHP. Uses [swaggest/php-json-schema](https://github.com/swaggest/php-json-schema) under the hood.

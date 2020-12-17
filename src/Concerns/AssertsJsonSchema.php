@@ -15,7 +15,7 @@ trait AssertsJsonSchema
      * @param  string  $path
      * @return void
      */
-    public function setJsonSchemaBasePath(string $path) : void
+    public function setJsonSchemaBasePath(string $path): void
     {
         $this->jsonSchemaAssertionBasePath = $path;
     }
@@ -27,7 +27,7 @@ trait AssertsJsonSchema
      *
      * @throws \PHPUnit\Framework\AssertionFailedError
      */
-    public function assertJsonSchema($schema, string $json) : void
+    public function assertJsonSchema($schema, string $json): void
     {
         (new SchemaAssertion($this->jsonSchemaAssertionBasePath))
             ->schema($schema)

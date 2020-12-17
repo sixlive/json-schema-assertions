@@ -2,8 +2,8 @@
 
 namespace Tests;
 
-use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\AssertionFailedError;
+use PHPUnit\Framework\TestCase;
 use sixlive\JsonSchemaAssertions\SchemaAssertion;
 
 class AssertResponseTest extends TestCase
@@ -23,16 +23,16 @@ class AssertResponseTest extends TestCase
     public function valid_schema_passes_as_json()
     {
         $schema = [
-             'type' => 'object',
-             'properties' => [
-               'foo' => [
-                 'type' => 'string',
-               ],
-             ],
-             'required' => [
-               'foo',
-             ],
-       ];
+            'type' => 'object',
+            'properties' => [
+                'foo' => [
+                    'type' => 'string',
+                ],
+            ],
+            'required' => [
+                'foo',
+            ],
+        ];
 
         (new SchemaAssertion())
             ->schema(json_encode($schema))
@@ -43,16 +43,16 @@ class AssertResponseTest extends TestCase
     public function valid_schema_passes_as_array()
     {
         $schema = [
-             'type' => 'object',
-             'properties' => [
-               'foo' => [
-                 'type' => 'string',
-               ],
-             ],
-             'required' => [
-               'foo',
-             ],
-       ];
+            'type' => 'object',
+            'properties' => [
+                'foo' => [
+                    'type' => 'string',
+                ],
+            ],
+            'required' => [
+                'foo',
+            ],
+        ];
 
         (new SchemaAssertion())->schema($schema)->assert($this->response);
     }
@@ -71,16 +71,16 @@ class AssertResponseTest extends TestCase
         $this->expectException(AssertionFailedError::class);
 
         $schema = [
-             'type' => 'object',
-             'properties' => [
-               'foo' => [
-                 'type' => 'integer',
-               ],
-             ],
-             'required' => [
-               'id',
-             ],
-       ];
+            'type' => 'object',
+            'properties' => [
+                'foo' => [
+                    'type' => 'integer',
+                ],
+            ],
+            'required' => [
+                'id',
+            ],
+        ];
 
         (new SchemaAssertion())
             ->schema(json_encode($schema))

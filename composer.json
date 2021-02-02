@@ -20,7 +20,7 @@
     "require": {
         "php": "^7.1|^8.0",
         "swaggest/json-schema": "^0.12.0",
-        "phpunit/phpunit": "^6.3|^7.3|^8.0"
+        "phpunit/phpunit": "^6.3|^7.3|^8.0|^9.0"
     },
     "autoload": {
         "psr-4": {

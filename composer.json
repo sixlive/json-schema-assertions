@@ -34,8 +34,6 @@
     },
     "scripts": {
         "cs": "vendor/bin/php-cs-fixer fix --config=./.php-cs-fixer.dist.php",
-        "post-update-cmd": "npx husky install",
-        "post-install-cmd": "npx husky install",
         "test": "vendor/bin/phpunit"
     },
     "config": {
